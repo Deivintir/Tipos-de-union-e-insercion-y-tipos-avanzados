@@ -23,5 +23,22 @@ id = 3456;
  * La terminal no devolverá ningún error, ya que los valores asignados a la varibale "id" cumplen con el tipo de unión, pues este permite tanto "string" como "number". */
 
 /**Alias de tipos:
- * 
- */
+ * Cuando disponemos de un tipo o, mas comúnmente, una combinación de tipos que serán usados frecuentemente en el programa, TypeScript proporciona una funcionalidad de tipos
+ * llamada alias de tipos. En ella, como su nombre indica, se puede asignar un identificador que posteriormente será usado en la sintaxis de declaración que use ese tipado.
+ * Ejemplo: */
+type name = string|number;
+let name1 : name;
+let name2 : name;
+
+name1 = '386';
+name1 = 386;
+name2 = 486;
+name2 = '486';
+/**Ahora estamos creando un alias con el nombre "name" que implementará el tipo de unión con "string" y "number" para declarar a continuación dos variables, "name1" y "name2",
+ * que usan ese alias como tipo. Esto nos permite que ambas variables puedan tener valores con tipo "string" y "number", como se puede comprobar en las asignaciones posteriores. 
+ * Los tipos de unión en alias también pueden usar valores en su declaración, lo que permitirá que las variables puedan tomar solamente un de los valores disponibles.
+ * Estos tipos de unión se denominan complejos. Por ejemplo:*/
+type dogBreeds = 'Pastor Alemán' | 'Pastor Belga' | 'Mastín';
+let tobybreed: dogBreeds = 'Pastor Alemán';
+/**Podemos comprobar que, si a la variable tipada con el tipo "dogBreeds" no se le asigna uno de los valores permitidos, se produce un error.
+ * Además, en VSC esta implementación permite lanzar las ayudas para el desarrollo: al asignar un valor, el editor desplegará una ventana con las opciones disponibles. */
