@@ -97,3 +97,63 @@ function setMessage(text?: string, userName: string):void{
 }
 /**En este caso, al grabar y transpilar, la terminal y el linter nos indican el error, ya que el parámetro "userName", al ser obligatorio, no podrá estar tras un parámetro opcional. */
 
+/**Tipado de "enum":
+ * TypeScript incorpora a JavaScript una característica común en los lenguajes de programación orientados a objetos, los "enum" o tipos enumerados. Su sintaxis usa la palabra "enum" y,
+ * entre llaves, la enumeración de tipos con o sin valor o expresión asignada. 
+ * enum Identificador {
+ *      Constante1 = expresion1,
+ *      Constante2 = expresion2,
+ *      ...
+ * }
+ * Su empleo es el mismo que en otros lenguajes: proporcionar un conjunto de valores que pueden ser asignados a los elementos que obtienen este tipo. En el caso concreeto de TypeScript, 
+ * en el que disponemos de tipos de unión complejos (como vimos en el apartado anterior), la utilidad de los "enum" puede ampliarse mediante la asignación a sus constantes de valores
+ * que en el futuro puedan cambiar.
+ * Por ejemplo:*/
+enum Tags{
+    Man = 'hombre',
+    Woman = 'mujer',
+    Boy = 'niño',
+    Girl = 'niña',
+}
+let ecommerceTags: Tags;
+ecommerceTags = Tags.Boy;
+console.log(ecommerceTags); //Imprimirá 'niño'.
+/**En el ejemplo anterior, si en el futuro se quieren cambiar los valores de la constantes del "enum" por otras, no será necesario modificar los mismos en las asignaciones del programa
+ * ya que tomarán los nuevos valores directamente. */
+
+/**Tipado de métodos, propiedades y clases globales de JavaScript:
+ * Como se detalló anteriormente, el tipado estático en TypeScript no solo recibe tipos primitivos de JavaScript o los tipos-valor indicados anteriormente; en realidad, puede recibir
+ * cualquier especificación que necesit4emos como desarrolladores.
+ * Por este motivo, una particularidad a veces desconocida de TypeScript es que permite implementar tipos a partir de clases globales de JavaScript, ampliando la funcionalidad de este 
+ * superset. Hay un caso de uso especialmente interesante de la clase globarl "Date" (recordemos que JavaScript permite implementar una colección de métodos y propiedades para trabajar
+ * con fechas).
+ * Podemos aplicar un tipado con esa clase a una variable en TypesCript para especificar que los valores que hay que almacenar son fechas.
+ * Por ejemplo: */
+let birthDate: Date;
+//birthDate = '11-12-1986'; <- Esto lanzará un error, ya que asignamos un valor tipo string a una variable que espera un objeto de clase "Date".
+/**En cambio, si asignamos a la variable una instancia de "Date", TypeScript no lanzará ningún error y la asignación será totalmente correcta.
+ * No obstante, no podemos perder de vista que el tipo de variable será un objeto, ya que no existen los tipos de fecha como taes en el lenguaje JavaScript. Podemos sustituir el código
+ * por el siguiente: */
+birthDate = new Date(1984,10,29,7,0,0,0);
+console.log(typeof birthDate)// El tipo de dato será objeto.
+/**Por tanto, la utilidad de este mecanismo, radica, más que en el tipo de dato que tendrá la variable, en que los valores que reciba sean objetos de una clase para así garantizar
+ * que las subsiguientes instrucciones puedan usar métodos y propiedades de esa clase y no provocar errores. En este mismo caso, podemos aplicar métodos de fechas a la variable 
+ * "birthDate" añadiendo las siguientes instrucciones: */
+const weekDays = [
+    'domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 
+];
+let message: string = `Usted nació en ${weekDays[birthDate.getDay()]}`;
+console.log(message);
+/**Recordemos que el tipado estático se produce en tiempo de desarrollo; por tanto, los errores que detecta TypeScript serán depurados antes de la transpilación a JavaScript. Sin embargo,
+ * esta circunstancia, unida a los editores de código como VSC, nos vuelve a proporcionar una poderosa herramienta de ayuda en el desarrollo de la que hasta ahora no disponíamos en
+ * JavaScript.
+ * Por ejemplo, en el caso anterior, cuando usamos la notación del punto en la variable "birthDate", al estar tipada como "Date", se desplegarán los métodos y propiedades de esta clase.
+ * En este sentido, con los tipos primitivos también se despliegan las ayudas de métodos y propiedades existentes en JavaScript para cada uno de ellos, especialmente para "string" y "numbers"
+ * Ejemplo: */
+let city: string;
+city = 'Nueva York';
+city = city.length > 20 ? 'Demasiados caracteres': city;
+console.log(city);
+/**En este caso, también podemos comprobar que se despliega la ayuda para propiedades y métodos de "string" en el caso de la variable "city", reduciendo de esta manera los errores sintácticos
+ * y proporcionando un desarrollo ágil y eficiente. */
+
