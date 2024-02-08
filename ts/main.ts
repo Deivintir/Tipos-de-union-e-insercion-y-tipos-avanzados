@@ -157,3 +157,23 @@ console.log(city);
 /**En este caso, también podemos comprobar que se despliega la ayuda para propiedades y métodos de "string" en el caso de la variable "city", reduciendo de esta manera los errores sintácticos
  * y proporcionando un desarrollo ágil y eficiente. */
 
+/**Tipado de genéricos:
+ * Continuando con las funcionalidades que implementa TypesCript, otro mecanismo común en lenguajes de programación es el tipado mediante genéricos, que se aplica a las funciones o métodos con 
+ * el fin de definir el tipo de dato en cada invocación de la función; para ello usa la sintaxis "<T>".
+ * Ejemplo: */
+function setResult<T> (result: T):any{
+    if(typeof result === 'number'){
+        return result >= 5 ? 'APTO': 'NO APTO';
+    }else{
+        return result;
+    }
+}
+const result1 = setResult<string> ('APTO');
+const result2 = setResult<number> (7);
+/**Aquí podemos observar que la función "setResult" recibe la sintaxis <T>, lo que permite que la representación de este tipo "T" pueda ser asignada al parámetro de la función "result", que 
+ * de esta manera tendrá el tipo que se defina en la invocación de la función.
+ * Por este motivo, podemos comprobar que en la invocación de la función podemos usar, de nuevo estos símbolos < y >, el tipo definitivo que tendrá en esa invocación el argumento; en este 
+ * ejemplo, una vez con "string" y la otra con "number".
+ * Es cierto que el ejemplo anterior se podría haber solucionado con un tipo de unión, por lo que el caso de uso más frecuente es el de tipos complejos como interfaces o clases definidas
+ * por el desarrollador, que, como veremos más adelante, son introducidas en funciones con tipo genérico declaradas en librerías o módulos externos al programa. */
+
