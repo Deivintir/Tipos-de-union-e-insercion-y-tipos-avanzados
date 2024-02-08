@@ -177,3 +177,38 @@ const result2 = setResult<number> (7);
  * Es cierto que el ejemplo anterior se podría haber solucionado con un tipo de unión, por lo que el caso de uso más frecuente es el de tipos complejos como interfaces o clases definidas
  * por el desarrollador, que, como veremos más adelante, son introducidas en funciones con tipo genérico declaradas en librerías o módulos externos al programa. */
 
+/**Arrays y objetos en TypeScript:
+ * Para concluir, vamos a aprender a continuación cómo implementar tipos a los elementos de arrays, una importante demanda de la comunidad de JavaScript. Recordemos que en este lenguaje los 
+ * arrays pueden tener diferentes tipos de datos en sus elementos, aunque esto no sea deseable.
+ * Para solucionar esta peculiaridad, TypeScript implementa dos alternativas sintácticas a la hora de establecer tipos estáticos a los arrays:
+ * let identificador: tipo-dato[];
+ * let identificador: Array<tipo-dato>;
+ * Ambas modalidades sintácticas realizan el mismo cometido, pero quizás la segunda, que incluye la palabra "Array", haya tenido mas éxito en la comunidad por ser más semántica. En cualquier
+ * caso, vamos a comprobar las dos formas:
+ * Ejemplo: */
+let fruits: string[];
+let results: Array<number>;
+fruits = ['pera', 'naranja', 'manzana'];
+results[0] = 12;
+/**Al grabar y transpilar el código no obtendremos ningún error, ya que los tipos de datos de los elementos de ambos arrays coinciden con los tipados en la declaración de estos, 
+ * "string" y "number", respectivamente. Ya sea por asignación de un literal de array, en el caso de la variable "fuits", o de acceso a un elemento, como en el caso de la variable "results"
+ * si coinciden los tipos de datos no tendremos ningún error; en caso contrario, el linter y la terminal nos avisarán.
+ * También es posible, aunque poco frecuente, implementar un tipo mediante un literal de objeto en TypeScript. 
+ * Por ejemplo: */
+let player : {name: string, team: string};
+player = {
+    name:'Larry Bird',
+    team: 'Boscon Celtics',
+}
+/**De esta manera, la variable "player" tendrá que recibir como calor objetos que tengan la propiedad "name" y la propiedad "team", ambas de tipo string. De hecho, podremos comprobar al
+ * asignar los valores que VSC despliega las ayudas correspondientes en este sentido.
+ * Además, si introducimos una propiedad que no existe en el tipo, el linter y la terminal nos advertirán del error. Por ejemplo, vamos a modificar la asignación del valor de la siguiente
+ * manera: */
+let player1 : {name: string, team: string};
+player1 ={
+    name: 'Xavi Alonso',
+    team: 'Real Madrid;',
+    //conference: 'España', <- Al grabar y transpilar el archivo, TypeScript nos indicará el error, ya que la propiedad "conference" no existe en el literal del objeto usado.
+}
+/**Esta modalidad de tipado con un objeto literal es poco utilizada, ya que normalmente en estos casos de uso se emplearán clases o interfaces con la sintaxis que aprenderemos
+ * en los siguientes apartados. */
