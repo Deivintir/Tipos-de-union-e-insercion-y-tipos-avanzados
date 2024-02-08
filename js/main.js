@@ -5,23 +5,17 @@
  * globales propias de JavaScript.
  * Para concluir, estudiaremos de forma práctica cómo establecer el tipado de variables o constantes para arrays(una demanda recurrente de los desarrolladores con JavaScript) y también
  * para objetos literales. */
-
 /**Tipos de unión:
  * TypeScripr implementa un mecanismo especialmente útil para aquellos programas en los que una variable o una función necesitan varios tipos primitivos o de cualquier otra clase. Se trata
  * de los llamados tipos de unión, un tipo compuesto por uno o varios tipos para determinados propósitos.
  * Su sintaxis es muy sencilla, ya que simplemente se añade el símbolo pipe(barra vertical) entre los diferentes tipos que se asignan de la siguiente manera:
- * 
+ *
  * let identificador : tipo1|tipo2...
- * 
+ *
  * Para la comprobación de este mecanismo y del resto de los que veremos en esta unidad aqui tienes un ejemplo:*/
-
-let id: string|number;
+var id;
 id = '1245';
 id = 3456;
 /**Para transpilar el archivo a main.js, tecleamos en la terminal nuestro comando habitual:
  * tsc ts/main.ts --outFile js/main.js --watch
- * La terminal no devolverá ningún error, ya que los valores asignados a la varibale "id" cumplen con el tipo de unión, pues este permite tanto "string" como "number". */
-
-/**Alias de tipos:
- * 
- */
+ */ 
